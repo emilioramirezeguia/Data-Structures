@@ -158,7 +158,7 @@ class DoublyLinkedList:
     """
 
     def delete(self, node):
-        # if there is no nodes
+        # check to see if list is empty
         if self.head is None and self.tail is None:
             return None
 
@@ -189,17 +189,20 @@ class DoublyLinkedList:
     """
 
     def get_max(self):
-        pass
+        # check to see if list is empty
+        if self.head is None and self.tail is None:
+            return None
 
+        # keep a record of the max value, starting with the first
+        max_value = self.head.value
+        # grab a hold of the current node
+        current_node = self.head
 
-test_DLL = DoublyLinkedList(ListNode("Emilio"))
-# Test the __len__ method.
-print(len(test_DLL))
-# Check the current node's value
-print(test_DLL.head.value)
-# test a new node is added to head correctly
-test_DLL.add_to_head(ListNode("Emilio2"))
-print("List length: ", len(test_DLL))  # should return 2
-print("Head's prev: ", test_DLL.head.prev)  # should return None
-print("Head's next: ", test_DLL.head.next.value)  # should return "Emilio"?
-print("Head's value: ", test_DLL.head.value.value)  # should return "Emilio2"
+        while current_node is not None:
+            # compara the current node's value to the current max value
+            if current_node.value > max_value:
+                max_value = current_node.value
+            # then update the current value to keep traversing through list
+            current_node = current_node.next
+        # when there are no longer any nodes left, return max value
+        return max_value
