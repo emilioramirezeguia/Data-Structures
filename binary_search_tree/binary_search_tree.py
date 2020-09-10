@@ -80,7 +80,16 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
-        pass
+        # check if there is a left child node
+        if self.left is not None:
+            # call for_each on the left childe node
+            self.left.post_order_dft()
+        # call function on root node's value last
+        print(self.value)
+        # check if there is a right child node
+        if self.right is not None:
+            self.right.post_order_dft()
+
         # # create a stack
         # stack = Stack()
         # # grab highest value node and push it to stack
@@ -111,14 +120,14 @@ class BSTNode:
         current_node = self
         queue.enqueue(current_node)
 
-        while len(queue):
+        while queue.size > 0:
             current_node = queue.dequeue()
             print(current_node.value)
 
-            if self.left is not None:
-                queue.enqueue(self.left)
-            if self.right is not None:
-                queue.enqueue(self.right)
+            if current_node.left is not None:
+                queue.enqueue(current_node.left)
+            if current_node.right is not None:
+                queue.enqueue(current_node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
@@ -142,11 +151,27 @@ class BSTNode:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self):
-        pass
+        # call function on root node's value first
+        print(self.value)
+        # check if there is a left child node
+        if self.left is not None:
+            # call for_each on the left childe node
+            self.left.pre_order_dft()
+        # check if there is a right child node
+        if self.right is not None:
+            self.right.pre_order_dft()
 
     # Print Post-order recursive DFT
     def post_order_dft(self):
-        pass
+        # check if there is a left child node
+        if self.left is not None:
+            # call for_each on the left childe node
+            self.left.post_order_dft()
+        # check if there is a right child node
+        if self.right is not None:
+            self.right.post_order_dft()
+        # call function on root node's value last
+        print(self.value)
 
 
 """
@@ -165,10 +190,10 @@ bst.insert(2)
 bst.bft_print()
 bst.dft_print()
 
-# print("elegant methods")
-# print("pre order")
-# bst.pre_order_dft()
-# print("in order")
-# bst.in_order_dft()
-# print("post order")
-# bst.post_order_dft()
+print("elegant methods")
+print("pre order")
+bst.pre_order_dft()
+print("in order")
+bst.in_order_dft()
+print("post order")
+bst.post_order_dft()
