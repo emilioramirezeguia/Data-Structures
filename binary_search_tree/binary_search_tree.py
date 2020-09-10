@@ -112,13 +112,13 @@ class BSTNode:
         queue.enqueue(current_node)
 
         while len(queue):
-            queue.dequeue()
+            current_node = queue.dequeue()
             print(current_node.value)
 
-            if current_node.left is not None:
-                queue.enqueue(current_node.left)
-            if current_node.right is not None:
-                queue.enqueue(current_node.right)
+            if self.left is not None:
+                queue.enqueue(self.left)
+            if self.right is not None:
+                queue.enqueue(self.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
@@ -149,21 +149,21 @@ class BSTNode:
         pass
 
 
-# """
-# This code is necessary for testing the `print` methods
-# """
-# bst = BSTNode(1)
+"""
+This code is necessary for testing the `print` methods
+"""
+bst = BSTNode(1)
 
-# bst.insert(8)
-# bst.insert(5)
-# bst.insert(7)
-# bst.insert(6)
-# bst.insert(3)
-# bst.insert(4)
-# bst.insert(2)
+bst.insert(8)
+bst.insert(5)
+bst.insert(7)
+bst.insert(6)
+bst.insert(3)
+bst.insert(4)
+bst.insert(2)
 
-# bst.bft_print()
-# bst.dft_print()
+bst.bft_print()
+bst.dft_print()
 
 # print("elegant methods")
 # print("pre order")
