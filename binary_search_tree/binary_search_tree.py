@@ -26,11 +26,16 @@ class BSTNode:
                 self.left = BSTNode(value)
             else:
                 self.left.insert(value)
-        elif value >= self.value:
+        else:
             if self.right is None:
                 self.right = BSTNode(value)
             else:
                 self.right.insert(value)
+        # elif value >= self.value:
+        #     if self.right is None:
+        #         self.right = BSTNode(value)
+        #     else:
+        #         self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
@@ -53,15 +58,20 @@ class BSTNode:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        max_value = self.value
         current_node = self
 
-        while current_node is not None:
-            if current_node.value > max_value:
-                max_value = current_node.value
+        while current_node.right:
             current_node = current_node.right
+        return current_node.value
+        # max_value = self.value
+        # current_node = self
 
-        return max_value
+        # while current_node is not None:
+        #     if current_node.value > max_value:
+        #         max_value = current_node.value
+        #     current_node = current_node.right
+
+        # return max_value
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
@@ -82,13 +92,13 @@ class BSTNode:
     def in_order_print(self):
         # check if there is a left child node
         if self.left is not None:
-            # call for_each on the left childe node
-            self.left.post_order_dft()
+            # call for_each on the left child node
+            self.left.in_order_print()
         # call function on root node's value last
         print(self.value)
         # check if there is a right child node
         if self.right is not None:
-            self.right.post_order_dft()
+            self.right.in_order_print()
 
         # # create a stack
         # stack = Stack()
@@ -120,13 +130,13 @@ class BSTNode:
         current_node = self
         queue.enqueue(current_node)
 
-        while queue.size > 0:
+        while len(queue) > 0:
             current_node = queue.dequeue()
             print(current_node.value)
 
-            if current_node.left is not None:
+            if current_node.left:
                 queue.enqueue(current_node.left)
-            if current_node.right is not None:
+            if current_node.right:
                 queue.enqueue(current_node.right)
 
     # Print the value of every node, starting with the given node,
@@ -138,12 +148,12 @@ class BSTNode:
         stack.push(current_node)
 
         while len(stack):
-            stack.pop()
+            current_node = stack.pop()
             print(current_node.value)
 
-            if current_node.left is not None:
+            if current_node.left:
                 stack.push(current_node.left)
-            if current_node.right is not None:
+            if current_node.right:
                 stack.push(current_node.right)
 
     # Stretch Goals -------------------------
@@ -194,6 +204,6 @@ print("elegant methods")
 print("pre order")
 bst.pre_order_dft()
 print("in order")
-bst.in_order_dft()
+bst.in_order_print()
 print("post order")
 bst.post_order_dft()
