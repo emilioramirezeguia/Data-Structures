@@ -9,6 +9,8 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+from stack import Stack
+from queue import Queue
 
 
 class BSTNode:
@@ -79,16 +81,61 @@ class BSTNode:
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
         pass
+        # # create a stack
+        # stack = Stack()
+        # # grab highest value node and push it to stack
+        # while self.right:
+        #     self = self.right
+        # current_node = self
+        # s.push(current_node)
+        # # check whether there are nodes in the stack
+        # while len(s):
+        #     # if there are no children, push it to stack
+        #     # if there is not left child, print lowest value
+        #     if current_node.left is None:
+        #         if current_node.right is None:
+        #             s.pop()
+        #             print(current_node.value)
+        #         else:
+
+        #     if:
+        #         current_node = current_node.left
+        #         current_node.in_order_print()
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
+
     def bft_print(self):
-        pass
+        queue = Queue()
+
+        current_node = self
+        queue.enqueue(current_node)
+
+        while len(queue):
+            queue.dequeue()
+            print(current_node.value)
+
+            if current_node.left is not None:
+                queue.enqueue(current_node.left)
+            if current_node.right is not None:
+                queue.enqueue(current_node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self):
-        pass
+        stack = Stack()
+
+        current_node = self
+        stack.push(current_node)
+
+        while len(stack):
+            stack.pop()
+            print(current_node.value)
+
+            if current_node.left is not None:
+                stack.push(current_node.left)
+            if current_node.right is not None:
+                stack.push(current_node.right)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
