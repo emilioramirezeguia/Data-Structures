@@ -24,7 +24,7 @@ class BSTNode:
                 self.left = BSTNode(value)
             else:
                 self.left.insert(value)
-        elif value > self.value:
+        elif value >= self.value:
             if self.right is None:
                 self.right = BSTNode(value)
             else:
